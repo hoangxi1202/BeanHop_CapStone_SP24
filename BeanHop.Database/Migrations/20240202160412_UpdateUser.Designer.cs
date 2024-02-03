@@ -4,6 +4,7 @@ using BeanHop.Database.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanHop.Database.Migrations
 {
     [DbContext(typeof(BeanHopDBContext))]
-    partial class BeanHopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240202160412_UpdateUser")]
+    partial class UpdateUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,29 +57,6 @@ namespace BeanHop.Database.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "CUSTOMER",
-                            Name = "Customer",
-                            NormalizedName = "customer"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "STAFF",
-                            Name = "Staff",
-                            NormalizedName = "staff"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "ADMIN",
-                            Name = "Admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("BeanHop.Model.Model.AppUser", b =>
@@ -99,6 +79,7 @@ namespace BeanHop.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConfirmationToken")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -139,7 +120,7 @@ namespace BeanHop.Database.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("RegistrationTime")
+                    b.Property<DateTime>("RegistrationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
@@ -174,293 +155,6 @@ namespace BeanHop.Database.Migrations
                         .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "e9118435-324a-490c-8a6a-239187bd76e9",
-                            Email = "member1@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name1",
-                            Lastname = "LastName1",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOoSa2gylzSnjXbY7Yb3vRe0Tw7WyQ6n6ljbpJYksJSC8B6m9zIO684P3hBtbIsZ6w==",
-                            PhoneNumber = "1",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member1@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "cf6fe556-afc7-4970-bcaf-7ce0ed9b028a",
-                            Email = "member2@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name2",
-                            Lastname = "LastName2",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPm/n5NSIv4wU69NL0D3X14m4wcDXIpeWiattblN6rTgQX97OOFqHfplHv4grvNZYA==",
-                            PhoneNumber = "2",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member2@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "8df41f62-92b3-4dd2-9e07-ead73786df18",
-                            Email = "member3@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name3",
-                            Lastname = "LastName3",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEKgKkf+6a30HKAQUuUhfxPvtIP9rrbSjrN3o66ZZVSl8KeCiSNGK77shvMwzBw+SnQ==",
-                            PhoneNumber = "3",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member3@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "a2443c70-e186-4577-b697-a1ab279a006e",
-                            Email = "member4@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name4",
-                            Lastname = "LastName4",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELtUUSbzJJdH8O2pYRb5oyNUako+teS88p7t8BLGganqhiKNBjhJr4ORjkaihavIJQ==",
-                            PhoneNumber = "4",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member4@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "f4aaace4-73c0-4dd6-8ded-5a3e48841633",
-                            Email = "member5@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name5",
-                            Lastname = "LastName5",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEHpqJef4o0eMaCopIxqqYX9iprv/gcZFW8+FycaxLciLe0LWFK7KDaFsdTGsBBTSsA==",
-                            PhoneNumber = "5",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member5@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "488bbceb-4cab-473f-b48e-33089a91eb2a",
-                            Email = "member6@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name6",
-                            Lastname = "LastName6",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEB5+e/a8ZLfEggDuOgjfvlild0jm8+jQ5Oei/hnCuRY0Sz3RaQxRE8Uv2mvuq0PVsw==",
-                            PhoneNumber = "6",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member6@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "c6d9f9f5-c55e-4490-b7be-ddfe4bfcc3dc",
-                            Email = "member7@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name7",
-                            Lastname = "LastName7",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELxKV8Dcz7EeWmqjORWNFyM0QmTj4RqiHWQctkCb5/gqoS0SCwvpKXsmbMAfeDFmaQ==",
-                            PhoneNumber = "7",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member7@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "9a0267cf-2436-4d55-ab94-2459f5ceb026",
-                            Email = "member8@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name8",
-                            Lastname = "LastName8",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEC/23LlvpaeGTJKhId6SG78W8kjyVKO3wdmwun9hlqbcpYjQalAaE8kfmtMmpG0dTw==",
-                            PhoneNumber = "8",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member8@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "eabf68b4-a17b-4ada-9781-b517e5142689",
-                            Email = "member9@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name9",
-                            Lastname = "LastName9",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEBS98e8n/D1lCeZdOAOeYUgLkxTbNrJQdo6heMbxKox0hUmp7Cn88eMgpU1Mfrd3tw==",
-                            PhoneNumber = "9",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member9@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "f661182b-6ce3-4d6d-bb13-9361f54c6bd0",
-                            Email = "member10@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name10",
-                            Lastname = "LastName10",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAED2LXzwVUK+tOWJ5P8ogrnyOW/xkThF8udQH/pD2jqvTAZDSa2g1iYz+jRqch7EmiQ==",
-                            PhoneNumber = "10",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "member10@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "30994dcc-c3a1-4d93-837a-47b023b4c9a6",
-                            Email = "staff11@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name11",
-                            Lastname = "LastName11",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPnCzhQBh1eiZ2JtxgF77ndmxgFVB4hMX3EaWUToSRbPz88+MI2xjsAgVWERcO+zFA==",
-                            PhoneNumber = "11",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "staff11@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "6b6688f5-2126-406d-b3ee-ae3e3ba02ac4",
-                            Email = "staff12@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name12",
-                            Lastname = "LastName12",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEC9rd9IDuzK45LgR6ZVJpZzOTezsqxOXBcEsFt+lDiVNFQFTzeQH2aN9p18HnJdUUw==",
-                            PhoneNumber = "12",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "staff12@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "ba20a3c2-b2b0-46c3-a48a-95f09a2e99c3",
-                            Email = "staff13@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name13",
-                            Lastname = "LastName13",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEEFYRoV0RUmywnB0PGi/PWteBioYrgzX/481jwAa+u+7pizBuXL4u8ctgbE0vQz0Cg==",
-                            PhoneNumber = "13",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "staff13@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "6cd9854b-c787-4ccd-9d8b-026156e55716",
-                            Email = "staff14@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name14",
-                            Lastname = "LastName14",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEBI6dW1VyJZcT/NKYdOaEp0QUr0x9h/2nArATG7XcUmD/4NouwpqsYc7Hr8r9Dcn+Q==",
-                            PhoneNumber = "14",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "staff14@gmail.com"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AccessFailedCount = 0,
-                            Address = "HCM",
-                            ConcurrencyStamp = "fbb79924-a28f-4805-964c-d13ffc59b7fe",
-                            Email = "staff15@gmail.com",
-                            EmailConfirmed = true,
-                            Firstname = "Name15",
-                            Lastname = "LastName15",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOgs9dq/dex/++bfBycZ0YVYoPcwSTjB4DUUnKgE8zPzbqallk01NSBd16tYlOghaw==",
-                            PhoneNumber = "15",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            Status = true,
-                            TwoFactorEnabled = false,
-                            UserName = "staff15@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("BeanHop.Model.Model.Bean", b =>
@@ -881,44 +575,6 @@ namespace BeanHop.Database.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("Price");
-
-                    b.HasData(
-                        new
-                        {
-                            PriceID = 1,
-                            Cost = 51000.0,
-                            PackagingType = "Nguyên Hạt",
-                            ProductID = 1,
-                            Weight = 200.0,
-                            status = true
-                        },
-                        new
-                        {
-                            PriceID = 2,
-                            Cost = 102000.0,
-                            PackagingType = "Thô vừa",
-                            ProductID = 1,
-                            Weight = 500.0,
-                            status = true
-                        },
-                        new
-                        {
-                            PriceID = 3,
-                            Cost = 51000.0,
-                            PackagingType = "Nguyên Hạt",
-                            ProductID = 2,
-                            Weight = 200.0,
-                            status = true
-                        },
-                        new
-                        {
-                            PriceID = 4,
-                            Cost = 102000.0,
-                            PackagingType = "Thô vừa",
-                            ProductID = 2,
-                            Weight = 500.0,
-                            status = true
-                        });
                 });
 
             modelBuilder.Entity("BeanHop.Model.Model.Product", b =>
@@ -961,63 +617,6 @@ namespace BeanHop.Database.Migrations
                     b.HasIndex("RoastLevelID");
 
                     b.ToTable("Product");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductID = 1,
-                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5168),
-                            Description = "Nằm ở độ cao 1500-1600m so với mực nước biển, Núi Min (xã Trạm Hành, Lâm Đồng) là vùng đất được thiên nhiên ưu ái khí hậu và thổ nhưỡng phù hợp phát triển cà phê Arabica. Hạt cà phê Núi Min đạt được những nốt hương tinh tế từ trái cây, socola, hạt khô, và quan trọng trên hết là sự cân bằng của vị chua-ngọt cùng cảm nhận êm ái tới tận hậu vị. \r\nVốn ý thức được từ sớm về giá trị của việc phát triển cà phê chất lượng cao, các nông hộ tại Núi Min vẫn luôn quan tâm tới chất lượng trồng trọt và thu hái, đảm bảo thu hoạch trái chín, hái bằng tay, sơ chế đúng tiêu chuẩn...\r\nCà phê Núi Min, Trạm Hành được xưởng rang BeanHop gửi tới khách hàng là hạt được sơ chế ướt bởi Lâm Tuyền Farm, sàng cỡ 18 đồng đều, hạt đẹp không lỗi. BeanHop cung cấp hai mức rang khác nhau là Light Roast và Medium Roast, đáp ứng nhu cầu đa dạng của khách hàng uống pha máy espresso/mokapot/phin cũng như khách hàng yêu thích cà phê rang light pha thủ công/ủ coldbrew\"\r\nDưới đây là một số công thức pha:\r\n- Công thức pha  Pour over (giấy lọc) - Hạt Light Roast\r\nCà phê sử dụng: 15GR\r\nTỉ lệ pha: 1:13 - 1:15\r\nNhiệt độ nước: 93*C\r\nThời gian pha: 2 phút 30 giây\r\n- Công thức pha máy Espresso - Hạt Medium Roast\r\nCà phê sử dụng: 18GR (doubleshot)\r\nThu được 36GR Espresso\r\nTỉ lệ gram in-out: 1:2\r\nNhiệt độ nước: 93-94*C\r\nThời gian pha: 27-3 giây\r\n- Công thức pha Ủ Coldbrew: \r\nTỉ lệ cà phê-nước 1:12 . Thời gian ủ 12 tiếng cho rang Medium, 15-18 tiếng cho rang Light \r\nSau khi lọc xong bã thì giữ lạnh coldbrew trong tủ lạnh thêm 2 tiếng trước khi thưởng thức",
-                            ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Introduction = "Thông tin cơ bản:\r\n- Farm : Lâm Tuyền, Núi Min, Trạm Hành\r\n- Giống: Catimor\r\n- Sơ chế: Full Washed\r\n- Độ cao: 1500 - 1600m\r\n- Hương vị: Plum Acidity, Caramel, Smooth body and sweetness",
-                            ProductName = "Cà phê Arabica Núi Min Rang Medium Pha Máy Pha Phin Ủ Coldbrew",
-                            RoastLevelID = 1,
-                            status = true
-                        },
-                        new
-                        {
-                            ProductID = 2,
-                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5209),
-                            Description = "An Coffee Farm là Farm Robusta chất lượng cao nằm ở độ cao 1000m, thuộc xã Hoài Đức, Lâm Hà, Lâm Đồng. Nông hộ cà phê được trực tiếp quản lý chất lượng bởi chị Duyên Anh, một người dành rất nhiều tâm huyết với hạt Robusta Việt Nam, luôn cố gắng cải thiện công nghệ cũng như chất lượng gieo trồng để mỗi vụ mùa đều cho ra sản phẩm hạt Robusta tốt hơn. \r\nLà một khách hàng của An Coffee Farm, xưởng rang BeanHop hoàn toàn yên tâm về chất lượng hạt, mỗi mùa vụ đều đạt độ tinh tế về hương vị  ổn định hoặc tốt hơn mùa trước. Cà phê Robusta Lâm Hà sơ chế Honey (hình thức sơ chế phơi khô khi phần vỏ ngoài và thịt của trái cà phê được loại bỏ 1 phần) được xưởng BeanHop cung cấp với mức rang Medium Roast hoặc Medium-Dark Roast. Hạt thể hiện rất tốt hương vị chua nhẹ trái cây, ngọt béo dày dặn, hậu vị êm ái khi sử dụng cho pha phin, pha máy espresso, ấm mokapot, ủ coldbrew...\r\n\r\nCông thức pha máy Espresso - Hạt Medium Roast \r\nCà phê sử dụng: 18GR (doubleshot) \r\nThu được 40GR Espresso \r\nTỉ lệ gram in-out: 1:2,2\r\nNhiệt độ nước: 92-93*C \r\nThời gian pha: 25-27 giây\r\n",
-                            ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Introduction = "Thông tin vùng trồng hạt cà phê:\r\n- Farm : An Coffee Farm - Farm Robusta chất lượng cao\r\n- Giống: Búp Tím\r\n- Sơ chế: Honey\r\n- Độ cao: 1000 -1100m\r\n- Hương vị: Chua nhẹ, Béo và êm, độ đậm vừa phải",
-                            ProductName = "Cà phê Robusta Lâm Hà Honey GU NHẸ Rang Medium Pha Phin Pha Máy",
-                            RoastLevelID = 1,
-                            status = true
-                        },
-                        new
-                        {
-                            ProductID = 3,
-                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5221),
-                            Description = "Cà phê là sự phối trộn giữa 2 dòng cà phê chất lượng cao:\r\n.  80% Robusta Lâm Hà (Natural)\r\n. 20% Arabica Cầu Đất (Washed)\r\nĐem tới Hương vị: Hương Dark Chocolate Mạnh, Có hậu vị dài\r\nĐậm đà, Ngọt béo, Dày vị\r\n\r\nThông tin về dòng cà phê Arabica và Robusta: \r\n- ROBUSTA LÂM HÀ\r\nVùng: Xã Hoài Đức, Lâm Hà, Lâm Đồng\r\nĐộ cao: 1000M\r\nGiống: BÚP TÍM\r\nSơ chế: Natural\r\nHương vị: Thơm hương Dark Chocolate, Đậm đà, Ngọt sâu, Hậu vị dài. Có chút đắng nhẹ hậu vị\r\n- VIỆT NAM ARABICA CẦU ĐẤT\r\nVùng: Cầu Đất, Đà Lạt, Lâm Đồng\r\nĐộ cao: 1500M\r\nGiống: Catimor\r\nSơ chế: WASHED\r\nHương vị: Đậm Đà, Chocote, Vị béo cao của hạt khô (Nutty), Chua nhẹ",
-                            ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Introduction = "COFFEE BLENDED: 8 ROBUSTA - 2 ARABICA\r\nDÀNH CHO GU UỐNG ĐẬM\r\nPHÙ HỢP PHA PHIN, PHA MÁY (GU ĐẬM)",
-                            ProductName = "Cà phê Blend GU ĐẬM 8 Robusta 2 Arabica Pha Phin",
-                            RoastLevelID = 2,
-                            status = true
-                        },
-                        new
-                        {
-                            ProductID = 4,
-                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5233),
-                            Description = "Cà phê là sự phối trộn giữa 2 dòng cà phê chất lượng cao:\r\n. 70% Arabica Cầu Đất (Washed)\r\n. 30% Robusta Lâm Hà (Honey)\r\nĐem tới hương vị: Chua thanh, Ngọt hậu\r\nHương Chocolate, Caramel Ngọt béo, Độ đậm vừa phải\r\n\r\nThông tin về dòng cà phê Arabica và Robusta: \r\n- VIỆT NAM ARABICA NÚI MIN\r\nVùng: Lâm Tuyền, Núi Min, Xã Trạm Hành\r\nĐộ cao: 1600M+\r\nGiống: Catimor\r\nSơ chế: WASHED\r\nHương vị: Chua thanh trái cây (Hương giống trái cam, mận), Ngọt hậu, hương socola và caramel nhẹ nhàng\r\n- ROBUSTA LÂM HÀ\r\nVùng: Xã Hoài Đức, Lâm Hà, Lâm Đồng\r\nĐộ cao: 1000M\r\nGiống: Búp Tím\r\nSơ chế: Honey\r\nHương vị: Chua nhẹ, Ngọt dịu, Độ béo cao, Hậu vị êm",
-                            ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Introduction = "COFFEE BLENDED: 7 ARABICA - 3 ROBUSTA\r\nDÀNH CHO GU UỐNG NHẸ\r\nPHÙ HỢP PHA PHIN, PHA ESPRESSO (MÁY, DỤNG CỤ PHA CẦM TAY, ẤM MOKA...)\r\nỦ COLDBREW",
-                            ProductName = "Cà phê Blend GU NHẸ 7 Arabica 3 Robusta Pha Phin Pha Máy",
-                            RoastLevelID = 3,
-                            status = true
-                        },
-                        new
-                        {
-                            ProductID = 5,
-                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5244),
-                            Description = "An Coffee Farm là Farm Robusta chất lượng cao nằm ở độ cao 1000m, thuộc xã Hoài Đức, Lâm Hà, Lâm Đồng. Nông hộ cà phê được trực tiếp quản lý chất lượng bởi chị Duyên Anh, một người dành rất nhiều tâm huyết với hạt Robusta Việt Nam, luôn cố gắng cải thiện công nghệ cũng như chất lượng gieo trồng để mỗi vụ mùa đều cho ra sản phẩm hạt Robusta tốt hơn. \r\nLà một khách hàng của An Coffee Farm, xưởng rang BeanHop hoàn toàn yên tâm về chất lượng hạt, mỗi mùa vụ đều đạt độ tinh tế về hương vị tốt hơn mùa trước. Cà phê Robusta Lâm Hà sơ chế Natural được xưởng BeanHop cung cấp với mức rang Medium-Dark Roast. Hạt thể hiện rất tốt hương vị cà phê đậm đà phong cách truyền thống, ngọt béo dày dặn, hậu vị hơi đắng nhẹ khi sử dụng cho pha phin, pha máy espresso, ấm mokapot\r\n\r\nCT máy Espresso - Hạt Medium Roast \r\nCà phê sử dụng: 18GR (doubleshot) \r\nThu được 40GR Espresso \r\nTỉ lệ gram in-out: 1:2,2\r\nNhiệt độ nước: 92-93*C \r\nThời gian pha: 25-27 giây",
-                            ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Introduction = "Thông tin vùng trồng hạt cà phê:\r\n- Farm : An Coffee Farm - Farm Robusta chất lượng cao\r\n- Giống: Búp tím\r\n- Sơ chế: Natural\r\n- Độ cao: 1000 -1100m\r\n- Hương vị: Đậm đà, Ngọt Béo, Đắng nhẹ",
-                            ProductName = "Cà phê Robusta Lâm Hà Natural GU ĐẬM Rang Medium Pha Máy Pha Phin",
-                            RoastLevelID = 3,
-                            status = true
-                        });
                 });
 
             modelBuilder.Entity("BeanHop.Model.Model.Rate", b =>
@@ -1074,28 +673,6 @@ namespace BeanHop.Database.Migrations
                     b.HasKey("RoastLevelID");
 
                     b.ToTable("RoastLevel");
-
-                    b.HasData(
-                        new
-                        {
-                            RoastLevelID = 1,
-                            RoastName = "Light"
-                        },
-                        new
-                        {
-                            RoastLevelID = 2,
-                            RoastName = "Medium"
-                        },
-                        new
-                        {
-                            RoastLevelID = 3,
-                            RoastName = "Medium Dark"
-                        },
-                        new
-                        {
-                            RoastLevelID = 4,
-                            RoastName = "Dark"
-                        });
                 });
 
             modelBuilder.Entity("BeanHop.Model.Model.Transport", b =>
@@ -1215,83 +792,6 @@ namespace BeanHop.Database.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 4,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 5,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 6,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 7,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 8,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 9,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 10,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 11,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 12,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 13,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 14,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 15,
-                            RoleId = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>

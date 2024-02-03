@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BeanHop.Model.Model
 {
@@ -14,6 +17,8 @@ namespace BeanHop.Model.Model
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Address { get; set; }
+        public string? ConfirmationToken { get; set; }
+        public DateTime? RegistrationTime { get; set; }
         public virtual Favorite? Favourite { get; set; }
         public ICollection<Rate>? Rates { get; set; }
         public ICollection<Import>? Imports { get; set; }

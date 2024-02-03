@@ -53,9 +53,7 @@ namespace BeanHop.Database.Extensions
                 {
                     Id = i,
                     UserName = "member" + i.ToString() + "@gmail.com",
-                    NormalizedUserName = "member" + i.ToString() + "@gmail.com",
                     Email = "member" + i.ToString() + "@gmail.com",
-                    NormalizedEmail = "member" + i.ToString() + "@gmail.com",
                     EmailConfirmed = true,
                     PasswordHash = hasher.HashPassword(null, "12345678"),
                     SecurityStamp = string.Empty,
@@ -63,6 +61,7 @@ namespace BeanHop.Database.Extensions
                     Lastname = "LastName" + i.ToString(),
                     Address = "HCM",
                     Status = true,
+                    PhoneNumber= i.ToString(),
                 });
 
                 modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
@@ -81,9 +80,7 @@ namespace BeanHop.Database.Extensions
                 {
                     Id = i,
                     UserName = "staff" + i.ToString() + "@gmail.com",
-                    NormalizedUserName = "staff" + i.ToString() + "@gmail.com",
                     Email = "staff" + i.ToString() + "@gmail.com",
-                    NormalizedEmail = "staff" + i.ToString() + "@gmail.com",
                     EmailConfirmed = true,
                     PasswordHash = hasher.HashPassword(null, "12345678"),
                     SecurityStamp = string.Empty,
@@ -91,6 +88,7 @@ namespace BeanHop.Database.Extensions
                     Lastname = "LastName" + i.ToString(),
                     Address = "HCM",
                     Status = true,
+                    PhoneNumber = i.ToString(),
                 });
 
                 modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanHop.Database.Migrations
 {
     [DbContext(typeof(BeanHopDBContext))]
-    [Migration("20240126124553_InitDB")]
-    partial class InitDB
+    [Migration("20240202161059_AddFakedata")]
+    partial class AddFakedata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,9 @@ namespace BeanHop.Database.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConfirmationToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -134,10 +137,13 @@ namespace BeanHop.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("RegistrationTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -154,6 +160,10 @@ namespace BeanHop.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -161,6 +171,10 @@ namespace BeanHop.Database.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
 
@@ -170,15 +184,14 @@ namespace BeanHop.Database.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "76c547a2-c534-470d-85e0-d58fb468690d",
+                            ConcurrencyStamp = "e9118435-324a-490c-8a6a-239187bd76e9",
                             Email = "member1@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name1",
                             Lastname = "LastName1",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member1@gmail.com",
-                            NormalizedUserName = "member1@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDbtD0k66gQWohZqmjDb3vB3jPcPaOwSRRnGpXYWfHOfk5cviHcTxEaA50HBvCMSng==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOoSa2gylzSnjXbY7Yb3vRe0Tw7WyQ6n6ljbpJYksJSC8B6m9zIO684P3hBtbIsZ6w==",
+                            PhoneNumber = "1",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -190,15 +203,14 @@ namespace BeanHop.Database.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "ec015e3c-65fe-4043-a69a-37c80540bc60",
+                            ConcurrencyStamp = "cf6fe556-afc7-4970-bcaf-7ce0ed9b028a",
                             Email = "member2@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name2",
                             Lastname = "LastName2",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member2@gmail.com",
-                            NormalizedUserName = "member2@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFFJPX3Qevton0JDQI8k4kGU3aEjAXDOidFC3/jTEQIjoXCh2dMwj07FpJgVnTViXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPm/n5NSIv4wU69NL0D3X14m4wcDXIpeWiattblN6rTgQX97OOFqHfplHv4grvNZYA==",
+                            PhoneNumber = "2",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -210,15 +222,14 @@ namespace BeanHop.Database.Migrations
                             Id = 3,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "affb5d9c-3eac-4a4f-b34c-5cfccde5de0a",
+                            ConcurrencyStamp = "8df41f62-92b3-4dd2-9e07-ead73786df18",
                             Email = "member3@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name3",
                             Lastname = "LastName3",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member3@gmail.com",
-                            NormalizedUserName = "member3@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKXvS5nJKEpYY4QtwtcBsx6d2wbpJ4sgcItAkKevqPpJVwbyANrMqFqshCwDqqfNeQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKgKkf+6a30HKAQUuUhfxPvtIP9rrbSjrN3o66ZZVSl8KeCiSNGK77shvMwzBw+SnQ==",
+                            PhoneNumber = "3",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -230,15 +241,14 @@ namespace BeanHop.Database.Migrations
                             Id = 4,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "8589b10e-ac62-470c-9fa8-1dc64dbee449",
+                            ConcurrencyStamp = "a2443c70-e186-4577-b697-a1ab279a006e",
                             Email = "member4@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name4",
                             Lastname = "LastName4",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member4@gmail.com",
-                            NormalizedUserName = "member4@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAsCGeC1ge9vvL2tZTmJf3uvo4kYrm0tNXqJGyfvfufo/68SaPwVXME1NhFe43DXuA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELtUUSbzJJdH8O2pYRb5oyNUako+teS88p7t8BLGganqhiKNBjhJr4ORjkaihavIJQ==",
+                            PhoneNumber = "4",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -250,15 +260,14 @@ namespace BeanHop.Database.Migrations
                             Id = 5,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "a95dbf93-8348-4685-a0ff-fc39053ccf02",
+                            ConcurrencyStamp = "f4aaace4-73c0-4dd6-8ded-5a3e48841633",
                             Email = "member5@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name5",
                             Lastname = "LastName5",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member5@gmail.com",
-                            NormalizedUserName = "member5@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAELgAjEhbt5QeAVvi9Cvbn8QHWS4BTps9J/TJsyEl7Wzy1SR00BLFR7C5PgPrEFtrRQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHpqJef4o0eMaCopIxqqYX9iprv/gcZFW8+FycaxLciLe0LWFK7KDaFsdTGsBBTSsA==",
+                            PhoneNumber = "5",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -270,15 +279,14 @@ namespace BeanHop.Database.Migrations
                             Id = 6,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "c19ca8bf-a23e-4fe3-bf8a-07bd3bf157d0",
+                            ConcurrencyStamp = "488bbceb-4cab-473f-b48e-33089a91eb2a",
                             Email = "member6@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name6",
                             Lastname = "LastName6",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member6@gmail.com",
-                            NormalizedUserName = "member6@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMQyE7AVQIFm3ioJPrkqZf3uzfC9gmdDyMkf5AoLRfN+/HJ2y1ladHFUVsHQpVQQYg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB5+e/a8ZLfEggDuOgjfvlild0jm8+jQ5Oei/hnCuRY0Sz3RaQxRE8Uv2mvuq0PVsw==",
+                            PhoneNumber = "6",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -290,15 +298,14 @@ namespace BeanHop.Database.Migrations
                             Id = 7,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "0ff6e154-e97a-4fa2-8106-9ba5e894a564",
+                            ConcurrencyStamp = "c6d9f9f5-c55e-4490-b7be-ddfe4bfcc3dc",
                             Email = "member7@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name7",
                             Lastname = "LastName7",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member7@gmail.com",
-                            NormalizedUserName = "member7@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBzfTy7T5464AChiLca340IOYi2bMhW4D6O59BsqE1LiCyPuBY//tt5CwRuZUuRtcA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELxKV8Dcz7EeWmqjORWNFyM0QmTj4RqiHWQctkCb5/gqoS0SCwvpKXsmbMAfeDFmaQ==",
+                            PhoneNumber = "7",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -310,15 +317,14 @@ namespace BeanHop.Database.Migrations
                             Id = 8,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "65f103b4-36ca-488b-865a-11ad0394cdc2",
+                            ConcurrencyStamp = "9a0267cf-2436-4d55-ab94-2459f5ceb026",
                             Email = "member8@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name8",
                             Lastname = "LastName8",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member8@gmail.com",
-                            NormalizedUserName = "member8@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK1GVjhuDzgBNC4frfLGG7NMe+76hDL7VGM8XsrTlWGhgKcxYs8boAf1yh7/acevzQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC/23LlvpaeGTJKhId6SG78W8kjyVKO3wdmwun9hlqbcpYjQalAaE8kfmtMmpG0dTw==",
+                            PhoneNumber = "8",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -330,15 +336,14 @@ namespace BeanHop.Database.Migrations
                             Id = 9,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "798612c8-5ff4-483a-a5c6-ab5cf378d532",
+                            ConcurrencyStamp = "eabf68b4-a17b-4ada-9781-b517e5142689",
                             Email = "member9@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name9",
                             Lastname = "LastName9",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member9@gmail.com",
-                            NormalizedUserName = "member9@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFeHDHUOipPYT4XWfx4NuByuBu9rzCYOjnWInYII4HDc7e4zGK9yL1IBYuaWMrPUUg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBS98e8n/D1lCeZdOAOeYUgLkxTbNrJQdo6heMbxKox0hUmp7Cn88eMgpU1Mfrd3tw==",
+                            PhoneNumber = "9",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -350,15 +355,14 @@ namespace BeanHop.Database.Migrations
                             Id = 10,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "4c887226-52d5-471a-b4a7-5179f65d9820",
+                            ConcurrencyStamp = "f661182b-6ce3-4d6d-bb13-9361f54c6bd0",
                             Email = "member10@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name10",
                             Lastname = "LastName10",
                             LockoutEnabled = false,
-                            NormalizedEmail = "member10@gmail.com",
-                            NormalizedUserName = "member10@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBsYL2gGKpwnG8h0WovB8beQmQrZEL4vHaLW3VWiv8lZ4KjvlvsVu0zRPUiuwf7opQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED2LXzwVUK+tOWJ5P8ogrnyOW/xkThF8udQH/pD2jqvTAZDSa2g1iYz+jRqch7EmiQ==",
+                            PhoneNumber = "10",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -370,15 +374,14 @@ namespace BeanHop.Database.Migrations
                             Id = 11,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "fdd0b814-bfc6-46d8-9501-b76ec091b7a7",
+                            ConcurrencyStamp = "30994dcc-c3a1-4d93-837a-47b023b4c9a6",
                             Email = "staff11@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name11",
                             Lastname = "LastName11",
                             LockoutEnabled = false,
-                            NormalizedEmail = "staff11@gmail.com",
-                            NormalizedUserName = "staff11@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEETGpcr/+8x7vCF5u+QjFpfUOMpVIEIcYyZX3FK1SgoUs3hg+Bp7as/1N2QudIyPug==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPnCzhQBh1eiZ2JtxgF77ndmxgFVB4hMX3EaWUToSRbPz88+MI2xjsAgVWERcO+zFA==",
+                            PhoneNumber = "11",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -390,15 +393,14 @@ namespace BeanHop.Database.Migrations
                             Id = 12,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "16dd9f8c-d843-49a9-878b-248bba433d00",
+                            ConcurrencyStamp = "6b6688f5-2126-406d-b3ee-ae3e3ba02ac4",
                             Email = "staff12@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name12",
                             Lastname = "LastName12",
                             LockoutEnabled = false,
-                            NormalizedEmail = "staff12@gmail.com",
-                            NormalizedUserName = "staff12@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKL4tcOOCHzWQwuVAzfKCDEuvV4Yv9cdRpDQzG7BDm5Zys6rpTOH21ggvshxiyIaXA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC9rd9IDuzK45LgR6ZVJpZzOTezsqxOXBcEsFt+lDiVNFQFTzeQH2aN9p18HnJdUUw==",
+                            PhoneNumber = "12",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -410,15 +412,14 @@ namespace BeanHop.Database.Migrations
                             Id = 13,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "7b07c7aa-209e-46d3-ace0-68933de3c146",
+                            ConcurrencyStamp = "ba20a3c2-b2b0-46c3-a48a-95f09a2e99c3",
                             Email = "staff13@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name13",
                             Lastname = "LastName13",
                             LockoutEnabled = false,
-                            NormalizedEmail = "staff13@gmail.com",
-                            NormalizedUserName = "staff13@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBP6s3bJl0utl7YDHK8JPZwnco6jKVlCRT0SXlyM+C/OgzUq/ZgNt8w+HNOy2Opa2A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEFYRoV0RUmywnB0PGi/PWteBioYrgzX/481jwAa+u+7pizBuXL4u8ctgbE0vQz0Cg==",
+                            PhoneNumber = "13",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -430,15 +431,14 @@ namespace BeanHop.Database.Migrations
                             Id = 14,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "beb26a04-b1c4-4108-a062-e7566449e2c8",
+                            ConcurrencyStamp = "6cd9854b-c787-4ccd-9d8b-026156e55716",
                             Email = "staff14@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name14",
                             Lastname = "LastName14",
                             LockoutEnabled = false,
-                            NormalizedEmail = "staff14@gmail.com",
-                            NormalizedUserName = "staff14@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEArxZWojs1A0t2QiShAvzCraAZE5lfHLqLnlzw8DtbH2oUZ+x6PIARfWUTSkh64unA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBI6dW1VyJZcT/NKYdOaEp0QUr0x9h/2nArATG7XcUmD/4NouwpqsYc7Hr8r9Dcn+Q==",
+                            PhoneNumber = "14",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -450,15 +450,14 @@ namespace BeanHop.Database.Migrations
                             Id = 15,
                             AccessFailedCount = 0,
                             Address = "HCM",
-                            ConcurrencyStamp = "566a70d1-9ade-45dd-929a-747377f26d6f",
+                            ConcurrencyStamp = "fbb79924-a28f-4805-964c-d13ffc59b7fe",
                             Email = "staff15@gmail.com",
                             EmailConfirmed = true,
                             Firstname = "Name15",
                             Lastname = "LastName15",
                             LockoutEnabled = false,
-                            NormalizedEmail = "staff15@gmail.com",
-                            NormalizedUserName = "staff15@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHzQA5vNFTAZ0OxLU720ev4hI+hirE+Pre0Z3ZmL3atFOHzLHRjpawAy3djJ9/EEkg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOgs9dq/dex/++bfBycZ0YVYoPcwSTjB4DUUnKgE8zPzbqallk01NSBd16tYlOghaw==",
+                            PhoneNumber = "15",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = true,
@@ -970,7 +969,7 @@ namespace BeanHop.Database.Migrations
                         new
                         {
                             ProductID = 1,
-                            CreateDate = new DateTime(2024, 1, 26, 19, 45, 52, 825, DateTimeKind.Local).AddTicks(2226),
+                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5168),
                             Description = "Nằm ở độ cao 1500-1600m so với mực nước biển, Núi Min (xã Trạm Hành, Lâm Đồng) là vùng đất được thiên nhiên ưu ái khí hậu và thổ nhưỡng phù hợp phát triển cà phê Arabica. Hạt cà phê Núi Min đạt được những nốt hương tinh tế từ trái cây, socola, hạt khô, và quan trọng trên hết là sự cân bằng của vị chua-ngọt cùng cảm nhận êm ái tới tận hậu vị. \r\nVốn ý thức được từ sớm về giá trị của việc phát triển cà phê chất lượng cao, các nông hộ tại Núi Min vẫn luôn quan tâm tới chất lượng trồng trọt và thu hái, đảm bảo thu hoạch trái chín, hái bằng tay, sơ chế đúng tiêu chuẩn...\r\nCà phê Núi Min, Trạm Hành được xưởng rang BeanHop gửi tới khách hàng là hạt được sơ chế ướt bởi Lâm Tuyền Farm, sàng cỡ 18 đồng đều, hạt đẹp không lỗi. BeanHop cung cấp hai mức rang khác nhau là Light Roast và Medium Roast, đáp ứng nhu cầu đa dạng của khách hàng uống pha máy espresso/mokapot/phin cũng như khách hàng yêu thích cà phê rang light pha thủ công/ủ coldbrew\"\r\nDưới đây là một số công thức pha:\r\n- Công thức pha  Pour over (giấy lọc) - Hạt Light Roast\r\nCà phê sử dụng: 15GR\r\nTỉ lệ pha: 1:13 - 1:15\r\nNhiệt độ nước: 93*C\r\nThời gian pha: 2 phút 30 giây\r\n- Công thức pha máy Espresso - Hạt Medium Roast\r\nCà phê sử dụng: 18GR (doubleshot)\r\nThu được 36GR Espresso\r\nTỉ lệ gram in-out: 1:2\r\nNhiệt độ nước: 93-94*C\r\nThời gian pha: 27-3 giây\r\n- Công thức pha Ủ Coldbrew: \r\nTỉ lệ cà phê-nước 1:12 . Thời gian ủ 12 tiếng cho rang Medium, 15-18 tiếng cho rang Light \r\nSau khi lọc xong bã thì giữ lạnh coldbrew trong tủ lạnh thêm 2 tiếng trước khi thưởng thức",
                             ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Introduction = "Thông tin cơ bản:\r\n- Farm : Lâm Tuyền, Núi Min, Trạm Hành\r\n- Giống: Catimor\r\n- Sơ chế: Full Washed\r\n- Độ cao: 1500 - 1600m\r\n- Hương vị: Plum Acidity, Caramel, Smooth body and sweetness",
@@ -981,7 +980,7 @@ namespace BeanHop.Database.Migrations
                         new
                         {
                             ProductID = 2,
-                            CreateDate = new DateTime(2024, 1, 26, 19, 45, 52, 825, DateTimeKind.Local).AddTicks(2265),
+                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5209),
                             Description = "An Coffee Farm là Farm Robusta chất lượng cao nằm ở độ cao 1000m, thuộc xã Hoài Đức, Lâm Hà, Lâm Đồng. Nông hộ cà phê được trực tiếp quản lý chất lượng bởi chị Duyên Anh, một người dành rất nhiều tâm huyết với hạt Robusta Việt Nam, luôn cố gắng cải thiện công nghệ cũng như chất lượng gieo trồng để mỗi vụ mùa đều cho ra sản phẩm hạt Robusta tốt hơn. \r\nLà một khách hàng của An Coffee Farm, xưởng rang BeanHop hoàn toàn yên tâm về chất lượng hạt, mỗi mùa vụ đều đạt độ tinh tế về hương vị  ổn định hoặc tốt hơn mùa trước. Cà phê Robusta Lâm Hà sơ chế Honey (hình thức sơ chế phơi khô khi phần vỏ ngoài và thịt của trái cà phê được loại bỏ 1 phần) được xưởng BeanHop cung cấp với mức rang Medium Roast hoặc Medium-Dark Roast. Hạt thể hiện rất tốt hương vị chua nhẹ trái cây, ngọt béo dày dặn, hậu vị êm ái khi sử dụng cho pha phin, pha máy espresso, ấm mokapot, ủ coldbrew...\r\n\r\nCông thức pha máy Espresso - Hạt Medium Roast \r\nCà phê sử dụng: 18GR (doubleshot) \r\nThu được 40GR Espresso \r\nTỉ lệ gram in-out: 1:2,2\r\nNhiệt độ nước: 92-93*C \r\nThời gian pha: 25-27 giây\r\n",
                             ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Introduction = "Thông tin vùng trồng hạt cà phê:\r\n- Farm : An Coffee Farm - Farm Robusta chất lượng cao\r\n- Giống: Búp Tím\r\n- Sơ chế: Honey\r\n- Độ cao: 1000 -1100m\r\n- Hương vị: Chua nhẹ, Béo và êm, độ đậm vừa phải",
@@ -992,7 +991,7 @@ namespace BeanHop.Database.Migrations
                         new
                         {
                             ProductID = 3,
-                            CreateDate = new DateTime(2024, 1, 26, 19, 45, 52, 825, DateTimeKind.Local).AddTicks(2278),
+                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5221),
                             Description = "Cà phê là sự phối trộn giữa 2 dòng cà phê chất lượng cao:\r\n.  80% Robusta Lâm Hà (Natural)\r\n. 20% Arabica Cầu Đất (Washed)\r\nĐem tới Hương vị: Hương Dark Chocolate Mạnh, Có hậu vị dài\r\nĐậm đà, Ngọt béo, Dày vị\r\n\r\nThông tin về dòng cà phê Arabica và Robusta: \r\n- ROBUSTA LÂM HÀ\r\nVùng: Xã Hoài Đức, Lâm Hà, Lâm Đồng\r\nĐộ cao: 1000M\r\nGiống: BÚP TÍM\r\nSơ chế: Natural\r\nHương vị: Thơm hương Dark Chocolate, Đậm đà, Ngọt sâu, Hậu vị dài. Có chút đắng nhẹ hậu vị\r\n- VIỆT NAM ARABICA CẦU ĐẤT\r\nVùng: Cầu Đất, Đà Lạt, Lâm Đồng\r\nĐộ cao: 1500M\r\nGiống: Catimor\r\nSơ chế: WASHED\r\nHương vị: Đậm Đà, Chocote, Vị béo cao của hạt khô (Nutty), Chua nhẹ",
                             ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Introduction = "COFFEE BLENDED: 8 ROBUSTA - 2 ARABICA\r\nDÀNH CHO GU UỐNG ĐẬM\r\nPHÙ HỢP PHA PHIN, PHA MÁY (GU ĐẬM)",
@@ -1003,7 +1002,7 @@ namespace BeanHop.Database.Migrations
                         new
                         {
                             ProductID = 4,
-                            CreateDate = new DateTime(2024, 1, 26, 19, 45, 52, 825, DateTimeKind.Local).AddTicks(2290),
+                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5233),
                             Description = "Cà phê là sự phối trộn giữa 2 dòng cà phê chất lượng cao:\r\n. 70% Arabica Cầu Đất (Washed)\r\n. 30% Robusta Lâm Hà (Honey)\r\nĐem tới hương vị: Chua thanh, Ngọt hậu\r\nHương Chocolate, Caramel Ngọt béo, Độ đậm vừa phải\r\n\r\nThông tin về dòng cà phê Arabica và Robusta: \r\n- VIỆT NAM ARABICA NÚI MIN\r\nVùng: Lâm Tuyền, Núi Min, Xã Trạm Hành\r\nĐộ cao: 1600M+\r\nGiống: Catimor\r\nSơ chế: WASHED\r\nHương vị: Chua thanh trái cây (Hương giống trái cam, mận), Ngọt hậu, hương socola và caramel nhẹ nhàng\r\n- ROBUSTA LÂM HÀ\r\nVùng: Xã Hoài Đức, Lâm Hà, Lâm Đồng\r\nĐộ cao: 1000M\r\nGiống: Búp Tím\r\nSơ chế: Honey\r\nHương vị: Chua nhẹ, Ngọt dịu, Độ béo cao, Hậu vị êm",
                             ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Introduction = "COFFEE BLENDED: 7 ARABICA - 3 ROBUSTA\r\nDÀNH CHO GU UỐNG NHẸ\r\nPHÙ HỢP PHA PHIN, PHA ESPRESSO (MÁY, DỤNG CỤ PHA CẦM TAY, ẤM MOKA...)\r\nỦ COLDBREW",
@@ -1014,7 +1013,7 @@ namespace BeanHop.Database.Migrations
                         new
                         {
                             ProductID = 5,
-                            CreateDate = new DateTime(2024, 1, 26, 19, 45, 52, 825, DateTimeKind.Local).AddTicks(2301),
+                            CreateDate = new DateTime(2024, 2, 2, 23, 10, 59, 550, DateTimeKind.Local).AddTicks(5244),
                             Description = "An Coffee Farm là Farm Robusta chất lượng cao nằm ở độ cao 1000m, thuộc xã Hoài Đức, Lâm Hà, Lâm Đồng. Nông hộ cà phê được trực tiếp quản lý chất lượng bởi chị Duyên Anh, một người dành rất nhiều tâm huyết với hạt Robusta Việt Nam, luôn cố gắng cải thiện công nghệ cũng như chất lượng gieo trồng để mỗi vụ mùa đều cho ra sản phẩm hạt Robusta tốt hơn. \r\nLà một khách hàng của An Coffee Farm, xưởng rang BeanHop hoàn toàn yên tâm về chất lượng hạt, mỗi mùa vụ đều đạt độ tinh tế về hương vị tốt hơn mùa trước. Cà phê Robusta Lâm Hà sơ chế Natural được xưởng BeanHop cung cấp với mức rang Medium-Dark Roast. Hạt thể hiện rất tốt hương vị cà phê đậm đà phong cách truyền thống, ngọt béo dày dặn, hậu vị hơi đắng nhẹ khi sử dụng cho pha phin, pha máy espresso, ấm mokapot\r\n\r\nCT máy Espresso - Hạt Medium Roast \r\nCà phê sử dụng: 18GR (doubleshot) \r\nThu được 40GR Espresso \r\nTỉ lệ gram in-out: 1:2,2\r\nNhiệt độ nước: 92-93*C \r\nThời gian pha: 25-27 giây",
                             ExpextDate = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Introduction = "Thông tin vùng trồng hạt cà phê:\r\n- Farm : An Coffee Farm - Farm Robusta chất lượng cao\r\n- Giống: Búp tím\r\n- Sơ chế: Natural\r\n- Độ cao: 1000 -1100m\r\n- Hương vị: Đậm đà, Ngọt Béo, Đắng nhẹ",

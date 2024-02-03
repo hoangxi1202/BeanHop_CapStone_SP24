@@ -39,6 +39,14 @@ namespace BeanHop.Database.EF
             .WithOne(f => f.Customer)
             .HasForeignKey<Favorite>(f => f.CustomerID);
 
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(p => p.PhoneNumber)
+                .IsUnique();
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(p => p.Email)
+                .IsUnique();
+  
+
             modelBuilder.Entity<Order>()
             .HasOne(u => u.Payment)
             .WithOne(f => f.Order)
